@@ -1,4 +1,5 @@
-﻿using Entities.Abstract;
+﻿
+using Core.Entities;//IEntitiy yer değiştirdiğinden yeni refernce olarak eklendi
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core.DataAccess;//IEntitiy repository yeri değişince refeerans olarak geldi
 using Entities.Concrete;
+using Entities.DTOs;
 
 namespace DataAccess.Abstract
 {
-   public interface IProductDal
-    {
-        List<Product> GetAll();
-        void Add(Product product);
-        void Update(Product product);
-        void Delete(Product product);
+   public interface IProductDal:IEntityRepository<Product>
+    {//buraya ürüne özel operasyonlar gelecek
 
-        List<Product> GetAllByCategory(int categoryId);//kategoriye göre filtreleme için
+        //DTO oluşturduktan sonra buraya gelip bunu yazdık
+        List<ProductDetailDto> GetProductDetails();
 
     }
 }
