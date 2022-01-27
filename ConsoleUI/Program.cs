@@ -10,7 +10,7 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
 
-            ProductTest();
+            ProductTest();  
 
 
 
@@ -31,7 +31,7 @@ namespace ConsoleUI
         {//ürün adı ve yanına katefori adını yazdırır
             ProductManager productManager = new ProductManager(new EfProductDal());//parantezin içerisine hangi veriyle çalıcağağını söylememizi istiyor
 
-            foreach (var product in productManager.GetProductDetails())// get all dan gelen her bir ürünün adnını yazdır
+            foreach (var product in productManager.GetProductDetails().Data)// get all dan gelen her bir ürünün adnını yazdır
             {//unit price ile de arama yapabiliriz yukarda
                 Console.WriteLine(product.ProductName+"/"+ product.CategoryName);
             }
@@ -42,6 +42,19 @@ namespace ConsoleUI
              {//unit price ile de arama yapabiliriz yukarda
                  Console.WriteLine(product.ProductName);
              }*/
+            var result = productManager.GetProductDetails();
+            if (result.Success==true)
+            {
+                foreach (var product in result.Data)
+                {
+                    Console.WriteLine(product.ProductName + "/" + product.CategoryName);
+                }
+
+            }
+            else
+            {
+                Console.WriteLine(  result.Message);
+            }
         }
     }
 }
